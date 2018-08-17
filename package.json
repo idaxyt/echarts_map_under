@@ -1,0 +1,22 @@
+{
+  "name": "echarts_map_under",
+  "version": "1.0.0",
+  "description": "echarts map_drill",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idaxyt/echarts_map_under.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idaxyt/echarts_map_under/issues"
+  },
+  "homepage": "https://github.com/idaxyt/echarts_map_under#readme",
+  "dependencies": {
+    "koa": "^2.5.2"
+  }
+}
