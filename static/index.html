@@ -10,6 +10,8 @@
     <script type="text/javascript" src="js/echarts.min.js"></script>
     <!-- 全国344个市、区、州对应的数字编号 -->
     <script type="text/javascript" src="js/citymap.js"></script>
+    <!-- 绵阳市乡镇的数字编号 -->
+    <script type="text/javascript" src="js/countymap.js"></script>
 </head>
 
 <body>
@@ -65,6 +67,8 @@
         "澳门": "aomen"
     };
 
+    // var sichuan = ["成都市","绵阳市","德阳市","广元市","巴中市","达州市","广安市","南充市","遂宁市","资阳市","内江市","自贡市","宜宾市",""]
+    var MianYang = ["平武县", "江油市", "北川羌族自治县", "安县", "梓潼县", "游仙区", "涪城区", "盐亭县", "三台县"]
     //直辖市和特别行政区-只有二级地图，没有三级地图
     var special = ["北京", "天津", "上海", "重庆", "香港", "澳门"];
     var mapdata = [];
@@ -126,8 +130,22 @@
                     renderMap(params.name, d);
                 });
             }
+        // } else {
+        //     renderMap('china', mapdata);
+        // }
+        } else if ( MianYang.indexOf(params.name) > -1) {
+            $.getJSON('map/county/' + countyMap[params.name] + '.json', function(data) {
+                echarts.registerMap(params.name, data);
+                var d = [];
+                for (var i = 0; i < data.features.length; i++) {
+                    d.push({
+                        name: data.features[i].properties.name
+                    })
+                    renderMap(params.name, d)
+                }
+            })
         } else {
-            renderMap('china', mapdata);
+            renderMap('china', mapdata)
         }
     });
 
@@ -135,7 +153,7 @@
     var option = {
         backgroundColor: '#000',
         title: {
-            text: 'Echarts3 中国地图下钻至县级',
+            text: 'Echarts3 中国地图下钻至乡镇',
             subtext: '三级下钻',
             link: 'http://www.ldsun.com',
             left: 'center',
